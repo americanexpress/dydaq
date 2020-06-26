@@ -1,0 +1,26 @@
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    graphql.execution: INFO
+    com.americanexpress.dydaq.graphql.ddq: DEBUG
+
+graphql:
+  spqr:
+    gui:
+      enabled: true
+    relay:
+      connection-check-relaxed: true
+#entity location should be provided always for the dyDDQ to discover metadata of these entities
+sidh:
+  entity-location: com.americanexpress.dydaq.graphql.ddq.dynamicquery.demoproj.dto
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE;MODE=MYSQL
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+server:
+  servlet:
+    contextPath: /dydaqgraphqlddq
+  port: 8449
+  

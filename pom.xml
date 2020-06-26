@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2020 American Express Travel Related Services Company, Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License. You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the License
+  ~ is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied. See the License for the specific language governing permissions and limitations under
+  ~ the License.
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.americanexpress.dydaq</groupId>
+    <artifactId>graphql-ddq-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>graphql-ddq-parent</name>
+    <description>graphql-ddq-parent</description>
+
+    <scm>
+        <url>https://github.com/americanexpress/dydaq</url>
+        <connection>scm:git:git://github.com/americanexpress/dydaq.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/americanexpress/dydaq.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/americanexpress/dydaq/issues</url>
+    </issueManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-americanexpress-maven</id>
+            <name>americanexpress-maven</name>
+            <url>https://api.bintray.com/maven/americanexpress/maven/com.americanexpress.dydaq/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://github.com/americanexpress/dydaq/LICENSE.txt</url>
+        </license>
+    </licenses>
+
+    <modules>
+        <module>graphql-ddq-core</module>
+        <module>graphql-ddq-plugin</module>
+        <module>graphql-ddq-example</module>
+    </modules>
+    <developers>
+        <developer>
+            <name>Tamim Mandal</name>
+            <email>MdTamim.Mandal@aexp.com</email>
+        </developer>
+        <developer>
+            <name>Swadhin (Dean) Jain</name>
+            <email>swadhin.jain@aexp.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <log4j2.version>2.13.3</log4j2.version>
+        <junit-jupiter.version>5.3.2</junit-jupiter.version>
+        <mockito-junit-jupiter.version>2.18.3</mockito-junit-jupiter.version>
+        <spring-boot.version>2.2.3.RELEASE</spring-boot.version>
+        <spring-cloud-version>2.2.3.RELEASE</spring-cloud-version>
+        <mockito-version>3.3.3</mockito-version>
+        <graphql-version>11.0</graphql-version>
+        <graphql-spqr-version>0.0.4</graphql-spqr-version>
+        <lombok-version>1.18.8</lombok-version>
+        <!-- ============ maven build and release ============== -->
+
+        <java.version>1.8</java.version>
+        <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+        <maven-site-plugin.version>3.3</maven-site-plugin.version>
+        <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
+        <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Logging dependencies-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok-version}</version>
+            </dependency>
+
+            <!--Spring dependencies-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+                <!-- exclude junit 4 -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.junit.vintage</groupId>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!--Unit testing dependency-->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java</artifactId>
+                <version>${graphql-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.leangen.graphql</groupId>
+                <artifactId>graphql-spqr-spring-boot-starter</artifactId>
+                <version>${graphql-spqr-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-config</artifactId>
+                <version>${spring-cloud-version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>UTF-8</encoding>
+                        <maxmem>1024m</maxmem>
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>analyze-only</goal>
+                            </goals>
+                            <configuration>
+                                <ignoreNonCompile>true</ignoreNonCompile>
+                                <failOnWarning>false</failOnWarning>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>enforce</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <requireJavaVersion>
+                                        <version>[1.8,)</version>
+                                    </requireJavaVersion>
+                                    <requireMavenVersion>
+                                        <version>[3.0.3,)</version>
+                                    </requireMavenVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

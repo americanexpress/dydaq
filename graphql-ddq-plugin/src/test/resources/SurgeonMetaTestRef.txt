@@ -1,0 +1,66 @@
+package com.americanexpress.dydaq.graphql.ddq.constants;
+
+public class SurgeonMeta{
+
+private SurgeonMeta(){}
+	public static final String TABLE = "surgeon_tbl";
+	public static final String GRAPH_LEVEL = "rootObject";
+	public  class AllColumns {
+	private AllColumns(){}
+	public static final String SURGEON_ID = "surgeon_id";
+	public static final String HOSPITAL_ID = "hospital_id";
+	public static final String FULL_NAME = "full_name";
+	public static final String DEPT_ID = "dept_id";
+	public static final String CONTACT_NO = "contact_no";
+}
+	public class Keys {
+	private Keys(){}
+	public static final String SURGEON_ID = "surgeon_id";
+}
+	public  class JoinColumns {
+	private JoinColumns(){}
+	public static final String SURGEON_ID = "surgeon_id";
+	public static final String HOSPITAL_ID = "hospital_id";
+	public static final String DEPT_ID = "dept_id";
+	public static final String CONTACT_NO = "contact_no";
+}
+
+public class DocSpeciality{
+
+private DocSpeciality(){}
+	public static final String TABLE = "doc_speciality_tbl";
+	public static final String GRAPH_LEVEL = "docSpeciality";
+	public  class AllColumns {
+	private AllColumns(){}
+	public static final String ID = "id";
+	public static final String SURGEON_ID = "surgeon_id";
+	public static final String SPECIALITY_ID = "speciality_id";
+	public static final String EXPERIENCE = "experience";
+}
+	public class Keys {
+	private Keys(){}
+	public static final String ID = "id";
+}
+	public  class JoinColumns {
+	private JoinColumns(){}
+	public static final String SURGEON_ID = "surgeon_id";
+	public static final String SPECIALITY_ID = "speciality_id";
+}
+
+public class Speciality{
+
+private Speciality(){}
+	public static final String TABLE = "speciality_tbl";
+	public static final String GRAPH_LEVEL = "docSpeciality_speciality";
+	public  class AllColumns {
+	private AllColumns(){}
+	public static final String SPECIALITY_ID = "speciality_id";
+	public static final String SPECIALITY = "speciality";
+}
+	public class Keys {
+	private Keys(){}
+	public static final String SPECIALITY_ID = "speciality_id";
+}
+}
+}
+}

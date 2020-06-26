@@ -1,0 +1,4 @@
+# ignore everything in this directory while commiting
+*
+#except this line
+!.gitignore
